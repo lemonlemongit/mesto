@@ -15,3 +15,10 @@
 .popup__confirm-button:hover {
  opacity: 0.8;
 }
+
+@media screen and (max-width:500px) {
+.popup__confirm-button {
+  margin-left: 22px;
+  margin: 45px 22px 25px 22px;
+}
+}
