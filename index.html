@@ -8,11 +8,85 @@
 </head>
 <body class="page">
   <header class="header">
+    <img class="header__logo" alt="Логотип сайта" src="images/header/header-logo.svg">  
   </header>
   <main class="content">
+    <section class="profile">
+      <div class="profile__date">
+        <img class="profile__photo" src="images/header/header-jack.jpg" alt="Фото автора Жак-Ив Кусто">
+        <div class="profile__information">
+          <div class="profile__text">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__profession">Исследователь океана</p>
+          </div>
+          <button class="button profile__edit">
+            <img class="profile____edit-button" src="images/profile/profile-edit.svg" alt="Кнопка редактировать">
+          </button>
+        </div>
+      </div>
+      <button class="button profile__button-add">
+        <img class="profile__button-plus" src="images/profile/profile-plus.svg" alt="Кнопка добавить">
+      </button>
+    </section>
+    <section class="elements">
+      <div class="element">
+        <img class="element__image" src="images/element/element-1.jpg" alt="Город Мурманск">
+         <div class="element__about">
+           <h2 class="element__name">Мурманск</h2>
+           <button class="button element__like"></button>
+         </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element/element-2.jpg" alt="Город Санкт-Петербург">
+         <div class="element__about">
+           <h2 class="element__name">Санкт-Петербург</h2>
+           <button class="button element__like"></button>
+         </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element/element-3.jpg" alt="Город Архангельск">
+         <div class="element__about">
+           <h2 class="element__name">Архангельск</h2>
+           <button class="button element__like"></button>
+         </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element/element-4.jpg" alt="Город Краснодар">
+         <div class="element__about">
+           <h2 class="element__name">Краснодар</h2>
+           <button class="button element__like"></button>
+         </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element/element-5.jpg" alt="Город Тюмень">
+         <div class="element__about">
+           <h2 class="element__name">Тюмень</h2>
+           <button class="button element__like"></button>
+         </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element/element-6.jpg" alt="Город Карачаево-Черкесия">
+         <div class="element__about">
+           <h2 class="element__name">Карачаево-Черкесия</h2>
+           <button class="button element__like"></button>
+         </div>
+      </div>
+    </section>
   </main>
+  <section class="popup">
+    <div class="popup__container">
+      <img class="button popup__close" src="images/popup/popup-close.svg" alt="Закрыть окно">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="profiles">
+        <input class="name-form popup__input" type="text" name="names" value="Жак-Ив Кусто">
+        <input class="job-form popup__input" type="text" name="professions" value="Исследователь океана">
+        <button class="button popup__confirm-button">Сохранить</button>
+      </form>
+    </div>
+  </section>
   <footer class="footer">
     <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
   </footer>
+  <script src="scripts/script.js"></script>
 </body>
 </html>
