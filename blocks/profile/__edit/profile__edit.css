@@ -1,15 +1,6 @@
 ﻿.profile__edit {
-  width: 24px;
-  height: 24px;
+  width: 10px;
+  height: 10px;
   padding: 0;
-  border: 1px solid white;
-  margin: 40px 0 0 18px;
-}
-
-@media screen and (max-width:460px) {
-.profile__edit {
-  width: 18px;
-  height: 18px;
-  margin: 30px 0 0 10px;
-}
+  border: 0;
 }

@@ -1,13 +1,11 @@
 ﻿.profile__date {
   display: flex;
-  max-height: 120px;
   margin-top: 40px;
 }
 
 @media screen and (max-width:634px) {
 .profile__date {
   flex-direction: column;
-  max-height: 286px;
   margin: 38px auto 0;
 }
 }
