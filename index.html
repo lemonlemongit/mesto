@@ -29,66 +29,56 @@
       </button>
     </section>
     <section class="elements">
-      <div class="element">
-        <img class="element__image" src="images/element/element-1.jpg" alt="Город Мурманск">
-         <div class="element__about">
-           <h2 class="element__name">Мурманск</h2>
-           <button class="button element__like" type="submit"></button>
-         </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/element/element-2.jpg" alt="Город Санкт-Петербург">
-         <div class="element__about">
-           <h2 class="element__name">Санкт-Петербург</h2>
-           <button class="button element__like" type="submit"></button>
-         </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/element/element-3.jpg" alt="Город Архангельск">
-         <div class="element__about">
-           <h2 class="element__name">Архангельск</h2>
-           <button class="button element__like" type="submit"></button>
-         </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/element/element-4.jpg" alt="Город Краснодар">
-         <div class="element__about">
-           <h2 class="element__name">Краснодар</h2>
-           <button class="button element__like" type="submit"></button>
-         </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/element/element-5.jpg" alt="Город Тюмень">
-         <div class="element__about">
-           <h2 class="element__name">Тюмень</h2>
-           <button class="button element__like" type="submit"></button>
-         </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/element/element-6.jpg" alt="Город Карачаево-Черкесия">
-         <div class="element__about">
-           <h2 class="element__name">Карачаево-Черкесия</h2>
-           <button class="button element__like" type="submit"></button>
-         </div>
-      </div>
     </section>
   </main>
-  <div class="popup">
-    <div class="popup__container">
-      <button class="button popup__close-button" type="button">
-        <img class="popup__close" src="images/popup/popup-close.svg" alt="Закрыть окно">
-      </button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="profiles">
-        <input class="popup__input_type_name popup__input" type="text" name="names" placeholder="Введите имя автора" required>
-        <input class="popup__input_type_profession popup__input" type="text" name="professions"  placeholder="Введите профессию" required>
-        <button class="button popup__confirm-button" type="submit">Сохранить</button>
-      </form>
-    </div>
-  </div>
   <footer class="footer">
     <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
   </footer>
+  <template id="template-element">
+    <div class="element">
+      <img class="element__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
+       <button class="button element__delete" src="images/element/trash-button.svg" alt="Кнопка удалить" type="submit"></button>
+      <div class="element__about">
+         <h2 class="element__name">Мурманск</h2>
+         <button class="button element__like" type="submit"></button>
+       </div>
+    </div>
+    </template>
+    <div class="popup popup__block_type_edit">
+      <div class="popup__container">
+        <button class="button popup__close-button popup__close-button_edit-block" type="button">
+          <img class="popup__close" src="images/popup/popup-close.svg" alt="Закрыть окно">
+        </button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form popup__form_edit" name="profiles">
+          <input class="popup__input_type_name popup__input" type="text" name="names" placeholder="Введите имя автора" required>
+          <input class="popup__input_type_profession popup__input" type="text" name="professions"  placeholder="Введите профессию" required>
+          <button class="button popup__confirm-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup__block_type_added">
+      <div class="popup__container">
+        <button class="button popup__close-button popup__close-button_added-block" type="button">
+          <img class="popup__close" src="images/popup/popup-close.svg" alt="Закрыть окно">
+        </button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form popup__form_added" name="added-card">
+          <input class="popup-added__input_type_name popup__input" type="text" name="name" placeholder="Название" required>
+          <input class="popup__input" type="text" name="link"  placeholder="Ссылка на картинку" required>
+          <button class="button popup__confirm-button" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="zoom">
+      <div class="zoom__card">
+        <button class="button zoom__close-button" type="button">
+          <img src="images/popup/popup-close.svg" alt="Закрыть окно" class="zoom__close">
+        </button>
+        <img class="zoom__image" alt="Фото города">
+        <h3 class="zoom__image-description"></h3>
+      </div>
+    </div>
   <script src="scripts/index.js"></script>
 </body>
 </html>
