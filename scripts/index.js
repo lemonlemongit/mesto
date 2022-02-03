@@ -25,8 +25,8 @@ const initialCards = [
   }
 ]; 
 
-const openPopupEdit = document.querySelector('.popup-block__type_edit');
-const openPopupAdded = document.querySelector('.popup-block__type_added');
+const openPopupEdit = document.querySelector('.edit-block');
+const openPopupAdded = document.querySelector('.added-block');
 const editButton = document.querySelector('.profile__edit-button');
 const AddedButton = document.querySelector('.profile__button-add'); 
 const closePopupEdit = document.querySelector('.popup__close-button_edit-block');
