@@ -25,12 +25,12 @@ const initialCards = [
   }
 ]; 
 
-const openPopupEdit = document.querySelector('.edit-block');
-const openPopupAdded = document.querySelector('.added-block');
+const popupEdit = document.querySelector('.edit-block');
+const popupAdded = document.querySelector('.added-block');
 const editButton = document.querySelector('.profile__edit-button');
-const AddedButton = document.querySelector('.profile__button-add'); 
-const closePopupEdit = document.querySelector('.popup__close-button_edit-block');
-const closePopupAdded = document.querySelector('.popup__close-button_added-block');
+const addedButton = document.querySelector('.profile__button-add'); 
+const popupEditClose = document.querySelector('.popup__close-button_edit-block'); 
+const popupAddedClose = document.querySelector('.popup__close-button_added-block'); 
 const confirmForm =  document.querySelector('.popup__form');
 const nameValue = confirmForm.querySelector('.popup__input_type_name');
 const professionValue = confirmForm.querySelector('.popup__input_type_profession');
@@ -39,73 +39,84 @@ const professionProfile = document.querySelector('.profile__profession');
 const elementSection = document.querySelector('.elements');
 const template = document.getElementById('template-element');
 const form = document.querySelector('.popup__form_added');
-const openZoom = document.querySelector('.zoom');
-const closeZoom = document.querySelector('.zoom__close');
+const popupZoom = document.querySelector('.zoom');
+const popupZoomClose = document.querySelector('.zoom__close-button');
 const descriptionZoom = document.querySelector('.zoom__image-description');
+const imageLink = document.querySelector(".zoom__image");
  
-//function Открытие попапа редактирования-----1
-function openedPopupEdit(event) {
-    nameValue.value = nameProfile.innerText;
-    professionValue.value = professionProfile.innerText;
-    openPopupEdit.classList.add('popup_opened');
+
+//function Открытие попапа редактирования----1
+function openedPopupEdit() {
+  nameValue.value = nameProfile.innerText;
+  professionValue.value = professionProfile.innerText;
+  openPopup(popupEdit);
 }
 
-//function Закрытие попапа редактирования-----2
-function closedPopupEdit() {
-  openPopupEdit.classList.remove('popup_opened');
-}
-
-//function Открытие попапа Добавления---------3
+//function Открытие попапа Добавления--------2
 function openedPopupAdded() {
-  openPopupAdded.classList.add('popup_opened');
+  openPopup(popupAdded);
 }
 
-//function Закрытия попапа Добавления---------4
-function closedPopupAdded() {
-  openPopupAdded.classList.remove('popup_opened');
-}
-
-//function Редактирование формы---------------5
+//function Редактирование формы--------------3
 function editedPopup(evt) {
   evt.preventDefault();
   nameProfile.textContent = nameValue.value;
   professionProfile.textContent = professionValue.value;
-  closedPopupEdit();
+  closePopup(evt);
 }
 
-// function рендер----------------------------6
+// function рендер---------------------------4
 function render() {
-  initialCards.forEach(renderCard);
+  initialCards.forEach(function(object) {
+  elementSection.append(createCard(object));
+ })
 }
 
-// function Рендер карточки-------------------7
-function renderCard(object) {
+// function Создание карточки-----------------5
+function createCard(object) {
   const templateDate = template.content.cloneNode(true);
   templateDate.querySelector('.element__image').setAttribute('style', `background-image: url(${object.link})`);
   templateDate.querySelector('.element__name').textContent = object.name;
+  const imageZoomValue = templateDate.querySelector('.element__image');
   listenElements(templateDate);
-  elementSection.prepend(templateDate);
+  imageZoomValue.addEventListener('click', zoomImage);
+  return templateDate;
 }
 
-//function Лайк------------------------------8
+//function Лайк-----------------------------6
 function likeCard(event) {
   if (event.target.classList.contains('element__like')) {
     event.target.classList.toggle('element__like_active')
   }
 }
 
-//function Слушатель-------------------------9
+//function Открыть любой попап--------------7
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+//function Закрыть любой попап--------------8
+function closePopup(popup) {
+  popup.target.closest('.popup').classList.remove('popup_opened');
+}
+
+//function Слушатель закрытия----------------9
+function listenCloseButton(button) {
+  button.addEventListener('click', closePopup);
+}
+
+//function Слушатели-------------------------10
 function listenElements(element) {
   element.querySelector('.element__delete').addEventListener('click', deleteCard);
   element.querySelector('.element__like').addEventListener('click', likeCard);
 }
 
-//function Удаление-------------------------10
+//function Удаление-------------------------11
 function deleteCard(event) {
   event.target.closest('.element').remove();
 }
 
-//function Добавление-------------------------11
+//function Добавление карточки пользователем-------------------------12
 function addedNewCard(event) {
   event.preventDefault();
   const nameValue = form.elements.name;
@@ -114,40 +125,41 @@ function addedNewCard(event) {
     name: nameValue.value,
     link: linkValue.value
   }
-  renderCard(card, elementSection)
+  const cardCreate = createCard(card);
+  const renderElement = (card, place) => {
+  place.prepend(card);
+  }
+  renderElement(cardCreate, elementSection);
   nameValue.value = '';
   linkValue.value = '';
-  closedPopupAdded();
+   
+  closePopup(event);
 }
 
-//function Зум изображений-------------------------12
+//function Зум изображений-------------------------13
 function zoomImage(event) {
   if (event.target.classList.contains('element__image')) {
-      let link = event.target.getAttribute('style').slice(22, -1);
-      let srcLink = document.querySelector(".zoom__image");
-      srcLink.setAttribute('src', `${link}`);
-
-      let imageTitle = event.target.closest('.element').querySelector('.element__name').textContent;
-      descriptionZoom.innerText = imageTitle;
-      openZoom.classList.toggle('zoom_opened');
+    const link = event.target.getAttribute('style').slice(22, -1);
+    imageLink.setAttribute('src', `${link}`);
+    
+  let imageTitle = event.target.closest('.element').querySelector('.element__name').textContent;
+   imageLink.setAttribute('alt', `${imageTitle}`);
+   descriptionZoom.innerText = imageTitle;
+   openPopup(popupZoom);
   }
 }
 
-//function Закрытие Зума-------------------------13
-function closedZoomImage() {
-  openZoom.classList.toggle('zoom_opened');
-}
+
+listenCloseButton(popupEditClose);  
+listenCloseButton(popupAddedClose);
+listenCloseButton(popupZoomClose);
+render();
 
 
 // Слушатели событий
 editButton.addEventListener('click', openedPopupEdit);
-AddedButton.addEventListener('click', openedPopupAdded);
-closePopupEdit.addEventListener('click', closedPopupEdit);
-closePopupAdded.addEventListener('click', closedPopupAdded);
+addedButton.addEventListener('click', openedPopupAdded);
 confirmForm.addEventListener('submit', editedPopup);
 form.addEventListener('submit', addedNewCard);
-elementSection.addEventListener('click', zoomImage);
-closeZoom.addEventListener('click', closedZoomImage);
 
-render();
 
