@@ -142,10 +142,10 @@ function zoomImage(event) {
     const link = event.target.getAttribute('style').slice(22, -1);
     imageLink.setAttribute('src', `${link}`);
     
-  let imageTitle = event.target.closest('.element').querySelector('.element__name').textContent;
-   imageLink.setAttribute('alt', `${imageTitle}`);
-   descriptionZoom.innerText = imageTitle;
-   openPopup(popupZoom);
+    const imageTitle = event.target.closest('.element').querySelector('.element__name').textContent;
+    imageLink.setAttribute('alt', `${imageTitle}`);
+    descriptionZoom.innerText = imageTitle;
+  openPopup(popupZoom);
   }
 }
 
