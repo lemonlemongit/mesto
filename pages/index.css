@@ -67,3 +67,6 @@
 @import url('../blocks/zoom/__close-button/zoom__close-button.css');
 @import url('../blocks/zoom/__image/zoom__image.css');
 @import url('../blocks/zoom/__image-description/zoom__image-description.css');
+
+/* подлючаю form*/
+@import url('../blocks/form/form.css');

@@ -93,12 +93,35 @@ function likeCard(event) {
 //function Открыть любой попап--------------7
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEscape);
+  popup.addEventListener("click", closePopupOverlay);
 }
 
-//function Закрыть любой попап--------------8
+//function Закрыть любой попап--------------8.1 
 function closePopup(popup) {
-  popup.target.closest('.popup').classList.remove('popup_opened');
+ //popup.target.closest('.popup').classList.remove('popup_opened');
+ popup.classList.remove('popup_opened');
+ document.removeEventListener('keydown', closePopupOnEscape);
+ popup.removeEventListener("click", closePopupOverlay);
+ 
 }
+
+////function Закрыть любой попап через Escape--------------8.2
+function closePopupOnEscape(popup) {
+  if (popup.key === 'Escape') {
+    const popupCloseEscape = document.querySelector('.popup_opened');
+    closePopup(popupCloseEscape);
+    
+  } 
+}
+
+////function Закрыть любой попап кликом на оверлей--------------8.3
+const closePopupOverlay = (element) => {
+  const popupCloseOverlay = document.querySelector('.popup_opened');
+  if (element.target === element.currentTarget) 
+    closePopup(popupCloseOverlay);
+    //element.target.closest('.popup').classList.remove('popup_opened');
+};
 
 //function Слушатель закрытия----------------9
 function listenCloseButton(button) {
@@ -161,5 +184,3 @@ editButton.addEventListener('click', openedPopupEdit);
 addedButton.addEventListener('click', openedPopupAdded);
 confirmForm.addEventListener('submit', editedPopup);
 form.addEventListener('submit', addedNewCard);
-
-
