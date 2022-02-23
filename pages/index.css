@@ -50,13 +50,16 @@
 
 /* подлючаю блок popup*/
 @import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/__error/popup__error.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/popup/__container/popup__container.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
 @import url('../blocks/popup/__close/popup__close.css');
 @import url('../blocks/popup/__input/popup__input.css');
+@import url('../blocks/popup/__input/_visible/popup__input_visible.css');
 @import url('../blocks/popup/__title/popup__title.css');
 @import url('../blocks/popup/__confirm-button/popup__confirm-button.css');
+@import url('../blocks/popup/__confirm-button/_disabled/popup__confirm-button_disabled.css');
 
 /* подлючаю блок popup-zooming*/
 
@@ -67,6 +70,3 @@
 @import url('../blocks/zoom/__close-button/zoom__close-button.css');
 @import url('../blocks/zoom/__image/zoom__image.css');
 @import url('../blocks/zoom/__image-description/zoom__image-description.css');
-
-/* подлючаю form*/
-@import url('../blocks/form/form.css');

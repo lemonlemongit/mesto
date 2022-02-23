@@ -98,11 +98,11 @@ function openPopup(popup) {
 }
 
 //function Закрыть любой попап--------------8.1 
-function closePopup(popup) {
- //popup.target.closest('.popup').classList.remove('popup_opened');
- popup.classList.remove('popup_opened');
+function closePopup() {
+ const popupClose = document.querySelector('.popup_opened');
+ popupClose.classList.remove('popup_opened');
  document.removeEventListener('keydown', closePopupOnEscape);
- popup.removeEventListener("click", closePopupOverlay);
+ popupClose.removeEventListener("click", closePopupOverlay);
  
 }
 
@@ -178,9 +178,12 @@ listenCloseButton(popupAddedClose);
 listenCloseButton(popupZoomClose);
 render();
 
-
-// Слушатели событий
+// Слушатели событий 
+const btn = document.querySelector('.popup__confirm-button_type_add'); 
 editButton.addEventListener('click', openedPopupEdit);
 addedButton.addEventListener('click', openedPopupAdded);
 confirmForm.addEventListener('submit', editedPopup);
 form.addEventListener('submit', addedNewCard);
+//popupAdded.addEventListener('submit', () => setDisableButton(config, button));
+
+
