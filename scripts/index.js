@@ -1,3 +1,7 @@
+import {FormValidator} from './FormValidator.js';
+
+
+
 const initialCards = [
   {
     name: 'Домбай',
@@ -44,6 +48,14 @@ const popupZoomClose = document.querySelector('.zoom__close-button');
 const descriptionZoom = document.querySelector('.zoom__image-description');
 const imageLink = document.querySelector(".zoom__image");
  
+const validationConfig = {
+  formSelector:'.popup__form', 
+  inputSelector:'.popup__input',
+  submitButtonSelector: '.popup__confirm-button',
+  disabledButtonClass: 'popup__confirm-button_disabled',
+  inputErrorClass: 'popup__input_visible'
+};
+
 
 //function Открытие попапа редактирования----1
 function openedPopupEdit() {
@@ -179,11 +191,20 @@ listenCloseButton(popupZoomClose);
 render();
 
 // Слушатели событий 
-const btn = document.querySelector('.popup__confirm-button_type_add'); 
 editButton.addEventListener('click', openedPopupEdit);
 addedButton.addEventListener('click', openedPopupAdded);
 confirmForm.addEventListener('submit', editedPopup);
 form.addEventListener('submit', addedNewCard);
-//popupAdded.addEventListener('submit', () => setDisableButton(config, button));
 
 
+
+
+
+//Вызов Валидации для форм
+ const formAddedValidate = document.querySelector('.popup__form_added');
+ const  bla = new FormValidator (validationConfig, formAddedValidate);
+ bla.enableValidation();
+
+ const formEditValidate = document.querySelector('.popup__form_edit');
+ const  bla2 = new FormValidator (validationConfig, formEditValidate);
+ bla2.enableValidation();
