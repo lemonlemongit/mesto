@@ -2,7 +2,6 @@ export const descriptionZoom = document.querySelector('.zoom__image-description'
 export const popupZoom = document.querySelector('.zoom');
 export const imageLink = document.querySelector(".zoom__image");
 
-
 //function Открыть любой попап--------------7
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -10,14 +9,12 @@ export function openPopup(popup) {
     popup.addEventListener("click", closePopupOverlay);
   }
 
-
   //function Закрыть любой попап--------------8.1 
   export function closePopup() {
     const popupClose = document.querySelector('.popup_opened');
     popupClose.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupOnEscape);
     popupClose.removeEventListener("click", closePopupOverlay);
-    
    }
 
    ////function Закрыть любой попап через Escape--------------8.2
@@ -25,7 +22,6 @@ export function openPopup(popup) {
     if (popup.key === 'Escape') {
       const popupCloseEscape = document.querySelector('.popup_opened');
       closePopup(popupCloseEscape);
-      
     } 
   }
 
@@ -34,9 +30,4 @@ export function openPopup(popup) {
     const popupCloseOverlay = document.querySelector('.popup_opened');
     if (element.target === element.currentTarget) 
       closePopup(popupCloseOverlay);
- 
   };
-
-
-
-
