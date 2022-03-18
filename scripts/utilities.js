@@ -1,6 +1,3 @@
-export const descriptionZoom = document.querySelector('.zoom__image-description');
-export const popupZoom = document.querySelector('.zoom');
-export const imageLink = document.querySelector(".zoom__image");
 
 //function Открыть любой попап--------------7
 export function openPopup(popup) {
@@ -27,7 +24,6 @@ export function openPopup(popup) {
 
   ////function Закрыть любой попап кликом на оверлей--------------8.3
   export const closePopupOverlay = (element) => {
-    const popupCloseOverlay = document.querySelector('.popup_opened');
     if (element.target === element.currentTarget) 
-      closePopup(popupCloseOverlay);
+    closePopup();
   };

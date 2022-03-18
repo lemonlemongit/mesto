@@ -1,11 +1,11 @@
 import {FormValidator} from './FormValidator.js';
-import  {openPopup, closePopup} from './utilities.js';
+import  {openPopup, closePopup, closePopupOverlay, closePopupOnEscape} from './utilities.js';
 import {Card} from './Card.js';
 
 const initialCards = [
   {
     name: 'Домбай',
-    link: 'https://images.unsplash.com/photo-1637579176819-36455abf2e97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
+    link: 'https://images.unsplash.com/photo-1640763403347-54557b9dbed3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
   },
   {
     name: 'Сундал',
@@ -43,6 +43,9 @@ const elementSection = document.querySelector('.elements');
 const template = document.getElementById('template-element');
 const form = document.querySelector('.popup__form_added');
 const popupZoomClose = document.querySelector('.zoom__close-button');
+const imageLink = document.querySelector(".zoom__image");
+const popupZoom = document.querySelector('.zoom');
+const descriptionZoom = document.querySelector('.zoom__image-description');
 const validationConfig = {
   formSelector:'.popup__form', 
   inputSelector:'.popup__input',
@@ -76,8 +79,16 @@ initialCards.forEach((data) => {
   render(cardElem)
  });
 
+ function handleCardClick(name, link) {
+  imageLink.src = link;
+  imageLink.alt = name;
+  imageLink.setAttribute('alt', `${name}`);
+  descriptionZoom.innerText = name;
+  openPopup(popupZoom);
+ };
+
 function create(data) {
-  const card =  new Card (data, template);
+  const card =  new Card (data, template, handleCardClick);
   const cardElemement = card.createCard();
   return cardElemement
 }

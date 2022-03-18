@@ -1,25 +1,26 @@
-import  { popupZoom, imageLink, descriptionZoom, openPopup, closePopup, closePopupOnEscape, closePopupOverlay} from './utilities.js';
 
 export class Card {
-  constructor(data, cardTemplate) {
+  constructor(data, cardTemplate, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplate = cardTemplate;
+    this._handleCardClick = handleCardClick;
   }
     createCard() {
     this._templateDate = this._cardTemplate.content.cloneNode(true);
     this._templateDate.querySelector('.element__image').setAttribute('style', `background-image: url(${this._link})`);
     this._templateDate.querySelector('.element__name').textContent = this._name;
     this._imageZoomValue = this._templateDate.querySelector('.element__image');
-    this._listenElements(this._templateDate);
-    this._imageZoomValue.addEventListener('click', this._zoomImage);
+    this._setEventListeners(this._templateDate);
     return this._templateDate;
   }
 
-  _listenElements(element) {
+  _setEventListeners(element) {
     element.querySelector('.element__delete').addEventListener('click', this._deleteCard);
     element.querySelector('.element__like').addEventListener('click', this._likeCard);
-    element.addEventListener('submit', this._addedNewCard);
+    this._imageZoomValue.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
+    });
   }
 
   _deleteCard(event) {
@@ -32,14 +33,4 @@ export class Card {
     }
   }
 
-  _zoomImage(event) {
-    if (event.target.classList.contains('element__image')) {
-      this._link = event.target.getAttribute('style').slice(22, -1);
-      imageLink.setAttribute('src', `${this._link}`);
-      this._imageTitle = event.target.closest('.element').querySelector('.element__name').textContent;
-      imageLink.setAttribute('alt', `${this._imageTitle}`);
-      descriptionZoom.innerText = this._imageTitle;
-      openPopup(popupZoom);//<-- в утилс
-    }
-  }
 };
