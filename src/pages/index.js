@@ -4,10 +4,8 @@ import {
   addedButton,
   nameValue,
   professionValue,
-  elementSection,
-  template,
   validationConfig
-} from '../components/constants.js';
+} from '../utils/constants.js';
 import {
   FormValidator
 } from '../components/FormValidator.js';
@@ -36,7 +34,7 @@ function handleCardClick(name, link) {
 
 //рендер
 function create(data) {
-  const card = new Card(data, template, handleCardClick);
+  const card = new Card(data, "#template-element", handleCardClick);
   const cardElemement = card.createCard();
   return cardElemement
 }
@@ -74,8 +72,8 @@ const profileFormEditSubmit = (data) => {
 }
 //добавление карточки
 const сardFormAddedSubmit = (data) => {
-  const card = create(data)
-  elementSection.prepend(card);
+  section.addItem(create(data))
+  //elementSection.prepend(card);
   addCardPopup.close();
 }
 
@@ -93,7 +91,6 @@ editButton.addEventListener("click", () => {
   } = userInfo.getUserInfo();
   nameValue.value = name;
   professionValue.value = job;
-  validatorEditForm.enableValidation();
   editProfilePopup.open();
 });
 //слушатель added формы.

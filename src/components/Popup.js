@@ -22,10 +22,9 @@ export class Popup {
 
 setEventListeners() {
     this._popup.addEventListener('click', (e) => {
-      if (e.target.classList.contains('popup_opened')) {
-        this.close()
-      }
-      if (e.target.classList.contains('popup__close')) {
+      if (e.target.classList.contains('popup_opened') || e.target.classList.contains("popup__close")
+      )
+      {
         this.close()
       }
     })

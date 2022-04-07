@@ -30,9 +30,6 @@ export const addedButton = document.querySelector('.profile__button-add');
 const confirmForm =  document.querySelector('.popup__form');
 export const nameValue = confirmForm.querySelector('.popup__input_type_name');
 export const professionValue = confirmForm.querySelector('.popup__input_type_profession');
-export const elementSection = document.querySelector('.elements');
-export const template = document.getElementById('template-element');
-
 export const validationConfig = {
   formSelector:'.popup__form', 
   inputSelector:'.popup__input',
