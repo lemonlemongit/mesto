@@ -16,7 +16,7 @@ export class FormValidator {
     this._button.classList.remove(this._setting.disabledButtonClass);
  };
  
- _checkButtonValidity (button) {
+ checkButtonValidity (button) {
    if (this._form.checkValidity())  {
      this._setActivateButton(this._button);
    } else {
@@ -42,27 +42,18 @@ export class FormValidator {
      this._setInputInvalid(errorMessage, input);
    }
  };
- 
- _formSubmit (event)  {
-   event.preventDefault();
-   if (this._form.checkValidity()) {
-   this._form.reset();
-   }
- };
- 
+
   _enableInput () {
     this._inputs.forEach(input => {
     input.addEventListener('input', () => {
        this._checkInputValidity(input);
-       this._checkButtonValidity(this._button);
+       this.checkButtonValidity(this._button);
        })
      })
    };
  
   enableValidation() {
-    this._form.addEventListener('submit', (event) => this._formSubmit(event));
-    this._form.addEventListener('submit', () =>  this._setDisableButton(this._button));
-    this._checkButtonValidity(this._button);
+    this.checkButtonValidity(this._button);
     this._enableInput(this._button);
    
    };

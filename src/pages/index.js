@@ -91,10 +91,12 @@ editButton.addEventListener("click", () => {
   } = userInfo.getUserInfo();
   nameValue.value = name;
   professionValue.value = job;
+  validatorEditForm.checkButtonValidity();
   editProfilePopup.open();
 });
 //слушатель added формы.
 addedButton.addEventListener("click", () => {
+  validatorAddedForm.checkButtonValidity();
   addCardPopup.open();
 });
 
