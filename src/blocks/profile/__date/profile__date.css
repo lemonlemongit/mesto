@@ -1,6 +1,7 @@
 ﻿.profile__date {
   display: flex;
   margin-top: 40px;
+  position: relative;
 }
 
 @media screen and (max-width:634px) {

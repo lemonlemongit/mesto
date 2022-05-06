@@ -30,6 +30,7 @@ export const addedButton = document.querySelector('.profile__button-add');
 const confirmForm =  document.querySelector('.popup__form');
 export const nameValue = confirmForm.querySelector('.popup__input_type_name');
 export const professionValue = confirmForm.querySelector('.popup__input_type_profession');
+export const editAvatarButton = document.querySelector('.profile__avatar');
 export const validationConfig = {
   formSelector:'.popup__form', 
   inputSelector:'.popup__input',

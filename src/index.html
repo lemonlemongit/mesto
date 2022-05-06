@@ -12,6 +12,7 @@
   <main class="content">
     <section class="profile">
       <div class="profile__date">
+        <button type="button" name="avatar" class="profile__avatar"></button>
         <img class="profile__photo" src="<%=require('./images/header/header-jack.jpg')%>" alt="Фото автора Жак-Ив Кусто"> 
         <div class="profile__information">
           <div class="profile__text">
@@ -39,7 +40,10 @@
        <button class="button element__delete" src="<%=require('./images/element/trash-button.svg')%>" alt="Кнопка удалить" type="submit"></button>
       <div class="element__about">
          <h2 class="element__name">Мурманск</h2>
-         <button class="button element__like" type="submit"></button>
+          <div class="element__like-block">
+            <button class="button element__like" type="submit"></button>
+            <span class="element__like-count"></span>
+          </div>         
        </div>
     </div>
     </template>
@@ -80,6 +84,30 @@
         </button>
         <img class="zoom__image" alt="Фото города">
         <h3 class="zoom__image-description"></h3>
+      </div>
+    </div>
+    <div class="popup deletet-block">
+      <div class="popup__container">
+        <button class="button popup__close-button popup__close-button_deletet-block" type="button">
+          <img class="popup__close" src="<%=require('./images/popup/popup-close.svg')%>" alt="Закрыть окно">
+        </button>
+        <form class="popup__form popup__form_deleted" name="added" novalidate>
+        <h2 class="popup__title">Вы уверены?</h2>
+          <button class="button popup__confirm-button" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup avatar-block">
+      <div class="popup__container">
+        <button class="button popup__close-button popup__close-button_avatar-block" type="button">
+          <img class="popup__close" src="<%=require('./images/popup/popup-close.svg')%>" alt="Закрыть окно">
+        </button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form popup__form_avatar" name="added" novalidate>
+        <input id="avatar" class="popup__input"  name="name" placeholder="Введите ссылку"  type="url" minlength="2" maxlength="400" required>
+          <span class="popup__error" id="avatar-error"></span>
+          <button class="button popup__confirm-button" type="submit">Сохранить</button>
+        </form>
       </div>
     </div>
 </body>

@@ -17,6 +17,7 @@
 
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__date/profile__date.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__text/profile__text.css');
 @import url('../blocks/profile/__information/profile__information.css');
 @import url('../blocks/profile/__photo/profile__photo.css');
@@ -36,6 +37,7 @@
 @import url('../blocks/element/__delete/element__delete.css');
 @import url('../blocks/element/__about/element__about.css');
 @import url('../blocks/element/__name/element__name.css');
+@import url('../blocks/element/__like-block/element__like-block.css');
 @import url('../blocks/element/__like/element__like.css');
 @import url('../blocks/element/__like/_active/element__like_active.css');
 

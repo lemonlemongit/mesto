@@ -16,6 +16,11 @@ export class PopupWithForm extends Popup {
     return values;
   }
 
+  changeSubmitHandler(newSubmitHandler) {
+    this._handleSubmit = newSubmitHandler;
+
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
@@ -27,5 +32,9 @@ export class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
+  }
+
+  loadingDateFromServer(data) {
+    this._form.querySelector(".popup__confirm-button").textContent = `${data}`;
   }
 }
