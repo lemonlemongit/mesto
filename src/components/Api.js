@@ -9,7 +9,7 @@ class Api {
       return fetch(`${this._baseUrl}/users/me`, {
           headers: this._headers
       })
-      .then(res => this._resStatus(res))
+      .then(res => this._checkRes(res))
   }
 
 /// получаем карточки 
@@ -17,7 +17,7 @@ class Api {
       return fetch(`${this._baseUrl}/cards`, {
           headers: this._headers
       })
-      .then(res => this._resStatus(res))
+      .then(res => this._checkRes(res))
   }
 
 // редактирование формы профиля
@@ -30,7 +30,7 @@ class Api {
               about
             })
       })
-      .then(res => this._resStatus(res))
+      .then(res => this._checkRes(res))
   }
 
 //// добавление карточки
@@ -43,7 +43,7 @@ class Api {
               link
             })
       })
-      .then(res => this._resStatus(res))
+      .then(res => this._checkRes(res))
   }
   
 ////удаление своей карточки
@@ -52,7 +52,7 @@ deleteCard(id) {
       method: 'DELETE',
       headers: this._headers,
   })
-  .then(res => this._resStatus(res))
+  .then(res => this._checkRes(res))
 }
 
 ////удаление лайка(снятие своего лайка)
@@ -61,7 +61,7 @@ return fetch(`${this._baseUrl}/cards/${id}/likes`, {
     method: 'DELETE',
     headers: this._headers,
 })
-.then(res => this._resStatus(res))
+.then(res => this._checkRes(res))
 }
 
 ////Установка лайка(ставим свой лайк = +1 к другим)
@@ -70,7 +70,7 @@ return fetch(`${this._baseUrl}/cards/${id}/likes`, {
     method: 'PUT',
     headers: this._headers,
 })
-.then(res => this._resStatus(res))
+.then(res => this._checkRes(res))
 }
 
 ////Установка лайка(ставим свой лайк = +1 к другим)
@@ -82,11 +82,11 @@ return fetch(`${this._baseUrl}/users/me/avatar`, {
     avatar:  url
   })
 })
-.then(res => this._resStatus(res))
+.then(res => this._checkRes(res))
 }
 
 //если сервер вернет ошибку
-_resStatus(res) {
+_checkRes(res) {
  return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 }
 
