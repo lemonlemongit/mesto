@@ -23,6 +23,9 @@ import {
   PopupWithForm
 } from '../components/PopupWithForm.js';
 import {
+  PopupWithConfirm
+} from '../components/PopupWithConfirm.js';
+import {
   UserInfo
 } from '../components/UserInfo.js';
 import {
@@ -67,7 +70,7 @@ function create(data) {
   const card = new Card(
 
     data, 
-    
+
     "#template-element",
 
     handleCardClick,
@@ -139,12 +142,12 @@ const profileFormEditSubmit = (data) => {
   api.editProfile(names,professions)
   .then(res => {
     userInfo.setUserInfo(names, professions)
+    editProfilePopup.close();
   })
   .catch((res) => console.log(res))
     .finally(() => {
       editProfilePopup.loadingDateFromServer('Сохранить');
     })
-  editProfilePopup.close();
 }
 
 //добавление карточки
@@ -160,21 +163,21 @@ const сardFormAddedSubmit = (data) => {
       userId: userId,
       ownerId: res.owner._id,
   })
+  addCardPopup.close();
   section.addItem(card)
 })
   .catch((err) => console.log(err))
   .finally(() => {
     addCardPopup.loadingDateFromServer('Сохранить');
   })
-  addCardPopup.close();
 }
 
 //класс PopupWithForm submit-delete-block
-const confirmPopup = new PopupWithForm('.deletet-block')
+const confirmPopup = new PopupWithConfirm('.deletet-block')
 
 //открытие формы edit avatar
 function avatarFormOpen() {
-  validatorAvatarForm.checkButtonValidity();
+  validatorAvatarForm.resetValidation();
   editAvatarPopup.open()
 }
 
@@ -194,6 +197,7 @@ function avatarFormSubmit(data) {
   })
 }
 
+//класс PopupWithForm avatar
 const editAvatarPopup = new PopupWithForm('.avatar-block', avatarFormSubmit)
 editAvatarPopup.setEventListeners();
 editAvatarButton.addEventListener('click', avatarFormOpen);
@@ -212,12 +216,12 @@ editButton.addEventListener("click", () => {
   } = userInfo.getUserInfo();
   nameValue.value = name;
   professionValue.value = job;
-  validatorEditForm.checkButtonValidity();
+  validatorEditForm.resetValidation();
   editProfilePopup.open();
 });
 //слушатель added формы.
 addedButton.addEventListener("click", () => {
-  validatorAddedForm.checkButtonValidity();
+  validatorAddedForm.resetValidation();
   addCardPopup.open();
 });
 

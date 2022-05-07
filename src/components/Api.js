@@ -10,7 +10,6 @@ class Api {
           headers: this._headers
       })
       .then(res => this._resStatus(res))
-  .catch(console.log)
   }
 
 /// получаем карточки 
@@ -19,7 +18,6 @@ class Api {
           headers: this._headers
       })
       .then(res => this._resStatus(res))
-  .catch(console.log)
   }
 
 // редактирование формы профиля
@@ -33,7 +31,6 @@ class Api {
             })
       })
       .then(res => this._resStatus(res))
-  .catch(console.log)
   }
 
 //// добавление карточки
@@ -47,7 +44,6 @@ class Api {
             })
       })
       .then(res => this._resStatus(res))
-  .catch(console.log)
   }
   
 ////удаление своей карточки
@@ -57,7 +53,6 @@ deleteCard(id) {
       headers: this._headers,
   })
   .then(res => this._resStatus(res))
-  .catch(console.log)
 }
 
 ////удаление лайка(снятие своего лайка)
@@ -67,7 +62,6 @@ return fetch(`${this._baseUrl}/cards/${id}/likes`, {
     headers: this._headers,
 })
 .then(res => this._resStatus(res))
-  .catch(console.log)
 }
 
 ////Установка лайка(ставим свой лайк = +1 к другим)
@@ -77,7 +71,6 @@ return fetch(`${this._baseUrl}/cards/${id}/likes`, {
     headers: this._headers,
 })
 .then(res => this._resStatus(res))
-  .catch(console.log)
 }
 
 ////Установка лайка(ставим свой лайк = +1 к другим)
@@ -88,16 +81,15 @@ return fetch(`${this._baseUrl}/users/me/avatar`, {
   body: JSON.stringify({
     avatar:  url
   })
-  
 })
 .then(res => this._resStatus(res))
-  .catch(console.log)
 }
 
 //если сервер вернет ошибку
 _resStatus(res) {
  return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 }
+
 }
 
 export const api = new Api({

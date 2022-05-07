@@ -6,6 +6,14 @@ export class FormValidator {
     this._inputs = Array.from(this._form.querySelectorAll(this._setting.inputSelector));
   }
 
+  //добавлю сброс ошибок инпутов
+  resetValidation = () => {
+   this.checkButtonValidity();
+    this._inputs.forEach((inputElement) => {
+      this._setInputValid(inputElement);
+    });
+  };
+
   _setDisableButton () {
     this._button.setAttribute('disabled', true);
     this._button.classList.add(this._setting.disabledButtonClass);
@@ -24,22 +32,24 @@ export class FormValidator {
    }
  };
  
-  _setInputInvalid (errorMessage, input)  {
+  _setInputInvalid (input)  {
+    const errorMessage = this._form.querySelector(`#${input.id}-error`);
    errorMessage.textContent = input.validationMessage;
    input.classList.add(this._setting.inputErrorClass);
  };
  
- _setInputValid  (errorMessage, input) {
+ _setInputValid (input) {
+  const errorMessage = this._form.querySelector(`#${input.id}-error`);
    errorMessage.textContent = '';
    input.classList.remove(this._setting.inputErrorClass);
  };
  
   _checkInputValidity (input) {
-    const errorMessage = this._form.querySelector(`#${input.id}-error`);
+    
     if (input.validity.valid) {
-     this._setInputValid(errorMessage, input);
+     this._setInputValid(input);
    } else {
-     this._setInputInvalid(errorMessage, input);
+     this._setInputInvalid(input, input.validationMessage);
    }
  };
 
